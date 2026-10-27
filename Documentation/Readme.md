@@ -203,3 +203,80 @@ Automated Access Governance
 ```
 
 which are foundational concepts used in enterprise security and identity management environments.
+
+
+## Advanced Printer Deployment & Lifecycle Management
+
+### Business Objective
+
+Implement fully automated printer deployment based on departmental membership.
+
+### Challenges Encountered
+
+Initial deployment methods did not automatically provision printers during user sign-in.
+
+Users were required to manually browse:
+
+```text
+\\DC01
+```
+
+and connect to printers before they became available.
+
+Windows also automatically changed default printers based on recent usage.
+
+### Final Solution
+
+Implemented:
+
+- Group Policy Printer Deployment
+- Security Group Targeting
+- Registry-based printer configuration
+- Default printer enforcement
+- Automatic printer replacement during department changes
+
+### Deployment Logic
+
+```text
+Finance-Team
+↓
+Deploy FINANCE-PRINTER
+↓
+Set FINANCE-PRINTER as Default
+```
+
+```text
+HR-Team
+↓
+Deploy HR-PRINTER
+↓
+Set HR-PRINTER as Default
+```
+
+### Lifecycle Automation
+
+When a user changes department:
+
+```text
+Old Department Printer
+↓
+Automatically Removed
+
+New Department Printer
+↓
+Automatically Installed
+
+Default Printer
+↓
+Automatically Updated
+```
+
+### Skills Demonstrated
+
+- Group Policy Preferences
+- Printer Deployment
+- Registry Configuration
+- Identity-Based Resource Assignment
+- User Lifecycle Management
+- Role-Based Access Control (RBAC)
+- Enterprise Desktop Administration
