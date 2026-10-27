@@ -1,3 +1,42 @@
+## Printer Deployment Architecture
+
+```mermaid
+graph LR
+
+    USER[User]
+
+    USER --> GROUP[Department Security Group]
+
+    GROUP --> GPO[Printer Deployment GPO]
+
+    GPO --> PRINTER[Assigned Department Printer]
+
+    PRINTER --> HP[HP Network Printer]
+
+```
+
+## User Provisioning Model
+
+```mermaid
+graph LR
+
+    NEWUSER[New Employee]
+
+    NEWUSER --> OU[Department OU]
+
+    OU --> GROUP[Security Group]
+
+    GROUP --> DRIVE[Shared Drive]
+
+    GROUP --> PRINTER[Department Printer]
+
+    GROUP --> POLICY[Department GPO]
+
+```
+
+
+
+
 # User Authentication & Resource Assignment Flow
 
 ```text
