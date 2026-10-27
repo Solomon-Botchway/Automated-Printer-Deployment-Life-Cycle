@@ -1,3 +1,116 @@
+# User Authentication & Resource Assignment Flow
+
+```text
+User Sign In
+      │
+      ▼
+PC01 Windows 11
+      │
+      ▼
+DNS Query
+      │
+      ▼
+DC01 DNS Server
+      │
+      ▼
+Active Directory Authentication
+      │
+      ▼
+Security Group Membership Evaluation
+      │
+      ▼
+Group Policy Processing
+      │
+      ├── Drive Mapping
+      ├── Printer Deployment
+      ├── Wallpaper Assignment
+      ├── Software Deployment
+      └── Security Policies
+      │
+      ▼
+User Receives Authorized Resources
+```
+
+# RBAC (Role-Based Access Control) Model
+
+```text
+Finance User
+      │
+      ▼
+Finance-Team
+      │
+      ├── FINANCE_Drive
+      ├── FINANCE-PRINTER
+      └── Finance Documents
+
+Finance-Team-Payroll
+      │
+      └── Payroll Folder
+
+Only Approved Payroll Staff
+      │
+      ▼
+Finance-Team-Payroll
+      │
+      ▼
+Payroll Access Granted
+
+All Other Finance Users
+      │
+      ▼
+Payroll Access Denied
+```
+
+# Security Monitoring Architecture
+
+```text
+PC01
+│
+├── Successful Logons (4624)
+├── Failed Logons (4625)
+├── Account Lockouts (4740)
+├── Account Management Events
+│
+▼
+Windows Event Forwarding
+│
+▼
+DC01 Event Collector
+│
+├── Security Monitoring
+├── Audit Review
+├── Incident Investigation
+└── Compliance Logging
+```
+
+
+# SoloTech Lab Architecture
+
+```mermaid
+graph TD
+
+    USER[Domain Users]
+
+    USER --> PC01[PC01<br/>Windows 11 Enterprise]
+
+    PC01 --> DC01[DC01<br/>Windows Server 2022]
+
+    DC01 --> AD[Active Directory]
+    DC01 --> DNS[DNS]
+    DC01 --> GPO[Group Policy]
+    DC01 --> FS[File Server]
+    DC01 --> PS[Print Server]
+    DC01 --> WEF[Event Collector]
+
+    FS --> SHARES[Department Shares]
+
+    PS --> PRINTERS[Department Printers]
+
+```
+
+
+
+
 # Technical Architecture Diagram
 
 ```mermaid
